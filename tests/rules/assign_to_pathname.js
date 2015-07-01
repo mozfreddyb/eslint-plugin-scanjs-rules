@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,17 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/assign_to_pathname", {
-    valid: [
-        { code: "foo.pathname==bar" }
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "foo.pathname==bar" }
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "foo.pathname=bar",
-            errors: [
-                { message: "Assignment to pathname can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "foo.pathname=bar",
+      errors: [
+        { message: "Assignment to pathname can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json

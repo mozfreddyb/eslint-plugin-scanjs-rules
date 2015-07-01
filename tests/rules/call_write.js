@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,17 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_write", {
-    valid: [
-        { code: "document.write" }
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "document.write" }
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "document.write('test')",
-            errors: [
-                { message: "The function write can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "document.write('test')",
+      errors: [
+        { message: "The function write can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json

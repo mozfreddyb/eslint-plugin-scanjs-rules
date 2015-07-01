@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,17 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/property_mozMobileConnection", {
-    valid: [
-        { code: "foo()" } // XXX no need to test for code that does not trigger.
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "foo()" } // XXX no need to test for code that does not trigger.
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "var conn = window.navigator.mozMobileConnection || window.navigator.mozMobileConnections",
-            errors: [
-                { message: "mozMobileConnection can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "var conn = window.navigator.mozMobileConnection || window.navigator.mozMobileConnections",
+      errors: [
+        { message: "mozMobileConnection can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json

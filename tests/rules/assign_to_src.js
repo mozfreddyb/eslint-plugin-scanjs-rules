@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,17 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/assign_to_src", {
-    valid: [
-        { code: "src.bar" }
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "src.bar" }
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "bar.src=foo",
-            errors: [
-                { message: "Assignment to src can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "bar.src=foo",
+      errors: [
+        { message: "Assignment to src can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json

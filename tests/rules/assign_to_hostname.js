@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,17 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/assign_to_hostname", {
-    valid: [
-        { code: "foo.hostname==bar" }
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "foo.hostname==bar" }
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "foo.hostname=bar",
-            errors: [
-                { message: "Assignment to hostname can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "foo.hostname=bar",
+      errors: [
+        { message: "Assignment to hostname can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json

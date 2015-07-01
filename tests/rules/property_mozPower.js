@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,17 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/property_mozPower", {
-    valid: [
-        { code: "foo()" } // XXX no need to test for code that does not trigger.
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "foo()" } // XXX no need to test for code that does not trigger.
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "navigator.mozPower",
-            errors: [
-                { message: "mozPower can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "navigator.mozPower",
+      errors: [
+        { message: "mozPower can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json

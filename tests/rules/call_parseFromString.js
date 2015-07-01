@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,17 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_parseFromString", {
-    valid: [
-        { code: "parseFromString()" }
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "parseFromString" }
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "window.doc = parser.parseFromString(someVar, 'text/html')",
-            errors: [
-                { message: "The function parseFromString can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "window.doc = parser.parseFromString(someVar, 'text/html')",
+      errors: [
+        { message: "The function parseFromString can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json

@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,17 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_getDeviceStorage_crashes", {
-    valid: [
-        { code: "foo()" } // XXX no need to test for code that does not trigger.
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "foo()" } // XXX no need to test for code that does not trigger.
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "crashes = navigator.getDeviceStorage('crashes')",
-            errors: [
-                { message: "The function getDeviceStorage with parameter crashes can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "crashes = navigator.getDeviceStorage('crashes')",
+      errors: [
+        { message: "The function getDeviceStorage with parameter crashes can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json

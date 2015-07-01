@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,17 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_addEventListener", {
-    valid: [
-        { code: "addEventListener" }
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "addEventListener" }
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "foo.addEventListener(bar+'bar')",
-            errors: [
-                { message: "The function addEventListener can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "foo.addEventListener(bar+'bar')",
+      errors: [
+        { message: "The function addEventListener can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json

@@ -899,7 +899,7 @@ function ruleTransform(rule) {
       newRule = (Function ('context', `return {
           "AssignmentExpression:exit": function (node) {
             if ("property" in node.left) { // member assignment, so yeah.
-              if (['+', '+='].indexOf(node.operator) !== -1) {
+              if (['=', '+='].indexOf(node.operator) !== -1) {
                 if (node.left.property.name === '${propName}') {
                   context.report(node, "Assignment to ${propName} can be unsafe");
                 }
@@ -932,7 +932,7 @@ function ruleTransform(rule) {
     type = `call-${funcName}`;          
       newRule = (Function ('context', `return {
           "CallExpression": function (node) {
-            if (node.callee.name == '${funcName}') {
+            if ((node.callee.name == '${funcName}') || ((node.callee.property) && (node.callee.property.name == '${funcName}'))) {
               context.report(node, "The function ${funcName} can be unsafe");
             }
           }
@@ -965,7 +965,7 @@ function ruleTransform(rule) {
               if (prop.key.name == "mozSystem") {
 
               }
-            } else if (prop.key.type == "Literal") {
+            } else if (prop.key.type == "Literalal") {
               if (prop.key.value == "mozSystem") {
                 context.report(node, "mozSystem can be unsafe");
               }

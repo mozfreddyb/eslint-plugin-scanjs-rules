@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,17 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/property_createContextualFragment", {
-    valid: [
-        { code: "createContextualFragment" }
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "createContextualFragment" }
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "foo.createContextualFragment",
-            errors: [
-                { message: "createContextualFragment can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "foo.createContextualFragment",
+      errors: [
+        { message: "createContextualFragment can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json

@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,23 +18,22 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/new_Function", {
-    valid: [
-        { code: "Function" }
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "Function" }
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "new Function('jsCode'+usercontrolledVal ) ",
-            errors: [
-                { message: "The Function constructor can be unsafe" }
-            ]
-        },
-        {
-            code: " new Function('arg','arg2','jsCode'+usercontrolledVal )",
-            errors: [
-                { message: "The Function constructor can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "new Function('jsCode'+usercontrolledVal ) ",
+      errors: [
+        { message: "The Function constructor can be unsafe" }
+      ]
+    },
+    {
+      code: " new Function('arg','arg2','jsCode'+usercontrolledVal )",
+      errors: [
+        { message: "The Function constructor can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json

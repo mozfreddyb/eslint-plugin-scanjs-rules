@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,17 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/assign_to_href", {
-    valid: [
-        { code: "foo.href==bar" }
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "foo.href==bar" }
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "foo.href=bar",
-            errors: [
-                { message: "Assignment to href can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "foo.href=bar",
+      errors: [
+        { message: "Assignment to href can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json

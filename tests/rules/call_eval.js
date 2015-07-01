@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,17 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_eval", {
-    valid: [
-        { code: "eval" }
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "eval" }
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "window.eval('jsCode'+usercontrolledVal )",
-            errors: [
-                { message: "The function eval can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "window.eval('jsCode'+usercontrolledVal )",
+      errors: [
+        { message: "The function eval can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json

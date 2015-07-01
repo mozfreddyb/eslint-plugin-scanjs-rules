@@ -1,7 +1,7 @@
-rules =({call_eval:(function anonymous(context) {
+rules = ({call_eval:(function anonymous(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'eval') {
+ if ((node.callee.name == 'eval') || ((node.callee.property) && (node.callee.property.name == 'eval'))) {
  context.report(node, "The function eval can be unsafe");
  }
  }
@@ -19,7 +19,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_Function:(function call_Function(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'Function') {
+ if ((node.callee.name == 'Function') || ((node.callee.property) && (node.callee.property.name == 'Function'))) {
  context.report(node, "The function Function can be unsafe");
  }
  }
@@ -28,7 +28,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_setTimeout:(function call_setTimeout(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'setTimeout') {
+ if ((node.callee.name == 'setTimeout') || ((node.callee.property) && (node.callee.property.name == 'setTimeout'))) {
  context.report(node, "The function setTimeout can be unsafe");
  }
  }
@@ -37,7 +37,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_setInterval:(function call_setInterval(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'setInterval') {
+ if ((node.callee.name == 'setInterval') || ((node.callee.property) && (node.callee.property.name == 'setInterval'))) {
  context.report(node, "The function setInterval can be unsafe");
  }
  }
@@ -46,7 +46,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_setImmediate:(function call_setImmediate(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'setImmediate') {
+ if ((node.callee.name == 'setImmediate') || ((node.callee.property) && (node.callee.property.name == 'setImmediate'))) {
  context.report(node, "The function setImmediate can be unsafe");
  }
  }
@@ -55,7 +55,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_execScript:(function call_execScript(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'execScript') {
+ if ((node.callee.name == 'execScript') || ((node.callee.property) && (node.callee.property.name == 'execScript'))) {
  context.report(node, "The function execScript can be unsafe");
  }
  }
@@ -64,7 +64,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_generateCRMFRequest:(function call_generateCRMFRequest(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'generateCRMFRequest') {
+ if ((node.callee.name == 'generateCRMFRequest') || ((node.callee.property) && (node.callee.property.name == 'generateCRMFRequest'))) {
  context.report(node, "The function generateCRMFRequest can be unsafe");
  }
  }
@@ -73,7 +73,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_write:(function call_write(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'write') {
+ if ((node.callee.name == 'write') || ((node.callee.property) && (node.callee.property.name == 'write'))) {
  context.report(node, "The function write can be unsafe");
  }
  }
@@ -82,7 +82,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_writeln:(function call_writeln(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'writeln') {
+ if ((node.callee.name == 'writeln') || ((node.callee.property) && (node.callee.property.name == 'writeln'))) {
  context.report(node, "The function writeln can be unsafe");
  }
  }
@@ -92,7 +92,7 @@ rules =({call_eval:(function anonymous(context) {
  return {
  "AssignmentExpression:exit": function (node) {
  if ("property" in node.left) { // member assignment, so yeah.
- if (['+', '+='].indexOf(node.operator) !== -1) {
+ if (['=', '+='].indexOf(node.operator) !== -1) {
  if (node.left.property.name === 'innerHTML') {
  context.report(node, "Assignment to innerHTML can be unsafe");
  }
@@ -105,7 +105,7 @@ rules =({call_eval:(function anonymous(context) {
  return {
  "AssignmentExpression:exit": function (node) {
  if ("property" in node.left) { // member assignment, so yeah.
- if (['+', '+='].indexOf(node.operator) !== -1) {
+ if (['=', '+='].indexOf(node.operator) !== -1) {
  if (node.left.property.name === 'outerHTML') {
  context.report(node, "Assignment to outerHTML can be unsafe");
  }
@@ -117,7 +117,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_insertAdjacentHTML:(function call_insertAdjacentHTML(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'insertAdjacentHTML') {
+ if ((node.callee.name == 'insertAdjacentHTML') || ((node.callee.property) && (node.callee.property.name == 'insertAdjacentHTML'))) {
  context.report(node, "The function insertAdjacentHTML can be unsafe");
  }
  }
@@ -137,7 +137,7 @@ rules =({call_eval:(function anonymous(context) {
  return {
  "AssignmentExpression:exit": function (node) {
  if ("property" in node.left) { // member assignment, so yeah.
- if (['+', '+='].indexOf(node.operator) !== -1) {
+ if (['=', '+='].indexOf(node.operator) !== -1) {
  if (node.left.property.name === 'location') {
  context.report(node, "Assignment to location can be unsafe");
  }
@@ -150,7 +150,7 @@ rules =({call_eval:(function anonymous(context) {
  return {
  "AssignmentExpression:exit": function (node) {
  if ("property" in node.left) { // member assignment, so yeah.
- if (['+', '+='].indexOf(node.operator) !== -1) {
+ if (['=', '+='].indexOf(node.operator) !== -1) {
  if (node.left.property.name === 'href') {
  context.report(node, "Assignment to href can be unsafe");
  }
@@ -163,7 +163,7 @@ rules =({call_eval:(function anonymous(context) {
  return {
  "AssignmentExpression:exit": function (node) {
  if ("property" in node.left) { // member assignment, so yeah.
- if (['+', '+='].indexOf(node.operator) !== -1) {
+ if (['=', '+='].indexOf(node.operator) !== -1) {
  if (node.left.property.name === 'pathname') {
  context.report(node, "Assignment to pathname can be unsafe");
  }
@@ -176,7 +176,7 @@ rules =({call_eval:(function anonymous(context) {
  return {
  "AssignmentExpression:exit": function (node) {
  if ("property" in node.left) { // member assignment, so yeah.
- if (['+', '+='].indexOf(node.operator) !== -1) {
+ if (['=', '+='].indexOf(node.operator) !== -1) {
  if (node.left.property.name === 'search') {
  context.report(node, "Assignment to search can be unsafe");
  }
@@ -189,7 +189,7 @@ rules =({call_eval:(function anonymous(context) {
  return {
  "AssignmentExpression:exit": function (node) {
  if ("property" in node.left) { // member assignment, so yeah.
- if (['+', '+='].indexOf(node.operator) !== -1) {
+ if (['=', '+='].indexOf(node.operator) !== -1) {
  if (node.left.property.name === 'protocol') {
  context.report(node, "Assignment to protocol can be unsafe");
  }
@@ -202,7 +202,7 @@ rules =({call_eval:(function anonymous(context) {
  return {
  "AssignmentExpression:exit": function (node) {
  if ("property" in node.left) { // member assignment, so yeah.
- if (['+', '+='].indexOf(node.operator) !== -1) {
+ if (['=', '+='].indexOf(node.operator) !== -1) {
  if (node.left.property.name === 'hostname') {
  context.report(node, "Assignment to hostname can be unsafe");
  }
@@ -215,7 +215,7 @@ rules =({call_eval:(function anonymous(context) {
  return {
  "AssignmentExpression:exit": function (node) {
  if ("property" in node.left) { // member assignment, so yeah.
- if (['+', '+='].indexOf(node.operator) !== -1) {
+ if (['=', '+='].indexOf(node.operator) !== -1) {
  if (node.left.property.name === 'src') {
  context.report(node, "Assignment to src can be unsafe");
  }
@@ -227,7 +227,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_parseFromString:(function call_parseFromString(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'parseFromString') {
+ if ((node.callee.name == 'parseFromString') || ((node.callee.property) && (node.callee.property.name == 'parseFromString'))) {
  context.report(node, "The function parseFromString can be unsafe");
  }
  }
@@ -236,7 +236,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_addEventListener:(function call_addEventListener(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'addEventListener') {
+ if ((node.callee.name == 'addEventListener') || ((node.callee.property) && (node.callee.property.name == 'addEventListener'))) {
  context.report(node, "The function addEventListener can be unsafe");
  }
  }
@@ -350,7 +350,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_mozSetMessageHandler:(function call_mozSetMessageHandler(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'mozSetMessageHandler') {
+ if ((node.callee.name == 'mozSetMessageHandler') || ((node.callee.property) && (node.callee.property.name == 'mozSetMessageHandler'))) {
  context.report(node, "The function mozSetMessageHandler can be unsafe");
  }
  }
@@ -369,7 +369,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_connect:(function call_connect(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'connect') {
+ if ((node.callee.name == 'connect') || ((node.callee.property) && (node.callee.property.name == 'connect'))) {
  context.report(node, "The function connect can be unsafe");
  }
  }
@@ -425,7 +425,7 @@ rules =({call_eval:(function anonymous(context) {
  return {
  "AssignmentExpression:exit": function (node) {
  if ("property" in node.left) { // member assignment, so yeah.
- if (['+', '+='].indexOf(node.operator) !== -1) {
+ if (['=', '+='].indexOf(node.operator) !== -1) {
  if (node.left.property.name === 'mozAudioChannelType') {
  context.report(node, "Assignment to mozAudioChannelType can be unsafe");
  }
@@ -438,7 +438,7 @@ rules =({call_eval:(function anonymous(context) {
  return {
  "AssignmentExpression:exit": function (node) {
  if ("property" in node.left) { // member assignment, so yeah.
- if (['+', '+='].indexOf(node.operator) !== -1) {
+ if (['=', '+='].indexOf(node.operator) !== -1) {
  if (node.left.property.name === 'mozAudioChannel') {
  context.report(node, "Assignment to mozAudioChannel can be unsafe");
  }
@@ -679,7 +679,7 @@ rules =({call_eval:(function anonymous(context) {
  }), call_hide:(function call_hide(context) {
  return {
  "CallExpression": function (node) {
- if (node.callee.name == 'hide') {
+ if ((node.callee.name == 'hide') || ((node.callee.property) && (node.callee.property.name == 'hide'))) {
  context.report(node, "The function hide can be unsafe");
  }
  }
@@ -842,7 +842,7 @@ rules =({call_eval:(function anonymous(context) {
  if (prop.key.name == "mozSystem") {
 
  }
- } else if (prop.key.type == "Literal") {
+ } else if (prop.key.type == "Literalal") {
  if (prop.key.value == "mozSystem") {
  context.report(node, "mozSystem can be unsafe");
  }
@@ -965,6 +965,8 @@ rules =({call_eval:(function anonymous(context) {
  }
 
  })})
+
+
 
 
 var fs = require("fs");

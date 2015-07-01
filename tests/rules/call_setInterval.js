@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var eslint = require("eslint"),
-    ESLintTester = require("eslint-tester");
+  ESLintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,17 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_setInterval", {
-    valid: [
-        { code: "setInterval" }
-    ]
-,    // Examples of code that should trigger the rule
-    invalid: [
+  valid: [
+    { code: "setInterval" }
+  ],    // Examples of code that should trigger the rule
+  invalid: [
 
-        {
-            code: "global.setInterval('jsCode'+usercontrolledVal ,timMs)",
-            errors: [
-                { message: "The function setInterval can be unsafe" }
-            ]
-        },
-    ]
+    {
+      code: "global.setInterval('jsCode'+usercontrolledVal ,timMs)",
+      errors: [
+        { message: "The function setInterval can be unsafe" }
+      ]
+    },
+  ]
 });  // auto-generated from scanjs rules.json
