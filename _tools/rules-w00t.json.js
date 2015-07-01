@@ -842,7 +842,7 @@ rules =({call_eval:(function anonymous(context) {
  if (prop.key.name == "mozSystem") {
 
  }
- } else if (prop.key.type == "Literalal") {
+ } else if (prop.key.type == "Literal") {
  if (prop.key.value == "mozSystem") {
  context.report(node, "mozSystem can be unsafe");
  }
