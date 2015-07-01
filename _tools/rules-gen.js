@@ -873,14 +873,13 @@ function ruleTransform(rule) {
   var source = rule.source;
   var type;
   var newRule;
-  console.log(rule.source);
   if (rule.source.indexOf("'") !== -1) {
     // specific rule that change for special strings, like remote=true, attention etc.
     var funcName = rule.source.match(/(\w+)\(.*\)/)[1];
     var lit = rule.source.match(/\'(.*)\'/)[1];
     type = `call-${funcName}-${lit}`;    
     newRule = (new Function('context', `return {
-        "CallExpression": function() {
+        "CallExpression": function(node) {
             if (node.callee.name == '${funcName}') {
             for (var i=0; i < node.arguments.length; i++) {
               var arg = node.arguments[i];
@@ -981,23 +980,25 @@ function ruleTransform(rule) {
     type = "member statement";
     // member
       var property = rule.source.match(/\.(\w+);?$/)[1];
-    type = `property-${property}`;        
+    type = `property-${property}`;
+
     newRule = (Function('context', `return {
        "MemberExpression": function(node) {
           if (node.property.name == '${property}') {
-            context.report(node, "${property} can be unsafe.");
+            context.report(node, "${property} can be unsafe");
 
           }
        }
      }
    `));
   } else {
-    type = `identifier-${rule.source}`;
+    type = `identifier-${rule.source}`;     l
+
     newRule = (Function('context', `
       return {
         "Identifier": function(node) {
-          if (node.name == rule.source) {
-            context.report(node, "${rule.source} can be unsafe.");
+          if (node.name == "${rule.source}") {
+            context.report(node, "${rule.source} can be unsafe");
           }
         }
       }
@@ -1025,6 +1026,9 @@ for (var rule in legacyRules) {
 
 legacyRules.toSource().replace(/, ([a-zA-Z0-9_]+):\(function (anonymous)\(context\) {/g, ", $1:\(function $1\(context\) {")
 
+/*
+
+*/
 /*
 
 */

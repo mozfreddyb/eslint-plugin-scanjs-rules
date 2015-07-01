@@ -1,5 +1,5 @@
 rules = {
-  call_eval:(function call_eval(context) {
+  call_eval: (function anonymous(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'eval') {
@@ -8,7 +8,7 @@ rules = {
       }
     };
 
-  }), new_Function:(function new_Function(context) {
+  }), new_Function: (function new_Function(context) {
     return {
       "NewExpression": function (node) {
         if (node.callee.name == 'Function') {
@@ -17,7 +17,7 @@ rules = {
       }
     };
 
-  }), call_Function:(function call_Function(context) {
+  }), call_Function: (function call_Function(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'Function') {
@@ -26,7 +26,7 @@ rules = {
       }
     };
 
-  }), call_setTimeout:(function call_setTimeout(context) {
+  }), call_setTimeout: (function call_setTimeout(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'setTimeout') {
@@ -35,7 +35,7 @@ rules = {
       }
     };
 
-  }), call_setInterval:(function call_setInterval(context) {
+  }), call_setInterval: (function call_setInterval(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'setInterval') {
@@ -44,7 +44,7 @@ rules = {
       }
     };
 
-  }), call_setImmediate:(function call_setImmediate(context) {
+  }), call_setImmediate: (function call_setImmediate(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'setImmediate') {
@@ -53,7 +53,7 @@ rules = {
       }
     };
 
-  }), call_execScript:(function call_execScript(context) {
+  }), call_execScript: (function call_execScript(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'execScript') {
@@ -62,7 +62,7 @@ rules = {
       }
     };
 
-  }), call_generateCRMFRequest:(function call_generateCRMFRequest(context) {
+  }), call_generateCRMFRequest: (function call_generateCRMFRequest(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'generateCRMFRequest') {
@@ -71,7 +71,7 @@ rules = {
       }
     };
 
-  }), call_write:(function call_write(context) {
+  }), call_write: (function call_write(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'write') {
@@ -80,7 +80,7 @@ rules = {
       }
     };
 
-  }), call_writeln:(function call_writeln(context) {
+  }), call_writeln: (function call_writeln(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'writeln') {
@@ -89,7 +89,7 @@ rules = {
       }
     };
 
-  }), assign_to_innerHTML:(function assign_to_innerHTML(context) {
+  }), assign_to_innerHTML: (function assign_to_innerHTML(context) {
     return {
       "AssignmentExpression:exit": function (node) {
         if ("property" in node.left) { // member assignment, so yeah.
@@ -104,7 +104,7 @@ rules = {
       }
     };
 
-  }), assign_to_outerHTML:(function assign_to_outerHTML(context) {
+  }), assign_to_outerHTML: (function assign_to_outerHTML(context) {
     return {
       "AssignmentExpression:exit": function (node) {
         if ("property" in node.left) { // member assignment, so yeah.
@@ -119,7 +119,7 @@ rules = {
       }
     };
 
-  }), call_insertAdjacentHTML:(function call_insertAdjacentHTML(context) {
+  }), call_insertAdjacentHTML: (function call_insertAdjacentHTML(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'insertAdjacentHTML') {
@@ -128,17 +128,17 @@ rules = {
       }
     };
 
-  }), property_createContextualFragment:(function property_createContextualFragment(context) {
+  }), property_createContextualFragment: (function property_createContextualFragment(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'createContextualFragment') {
-          context.report(node, "createContextualFragment can be unsafe.");
+          context.report(node, "createContextualFragment can be unsafe");
 
         }
       }
     }
 
-  }), assign_to_location:(function assign_to_location(context) {
+  }), assign_to_location: (function assign_to_location(context) {
     return {
       "AssignmentExpression:exit": function (node) {
         if ("property" in node.left) { // member assignment, so yeah.
@@ -153,7 +153,7 @@ rules = {
       }
     };
 
-  }), assign_to_href:(function assign_to_href(context) {
+  }), assign_to_href: (function assign_to_href(context) {
     return {
       "AssignmentExpression:exit": function (node) {
         if ("property" in node.left) { // member assignment, so yeah.
@@ -168,7 +168,7 @@ rules = {
       }
     };
 
-  }), assign_to_pathname:(function assign_to_pathname(context) {
+  }), assign_to_pathname: (function assign_to_pathname(context) {
     return {
       "AssignmentExpression:exit": function (node) {
         if ("property" in node.left) { // member assignment, so yeah.
@@ -183,7 +183,7 @@ rules = {
       }
     };
 
-  }), assign_to_search:(function assign_to_search(context) {
+  }), assign_to_search: (function assign_to_search(context) {
     return {
       "AssignmentExpression:exit": function (node) {
         if ("property" in node.left) { // member assignment, so yeah.
@@ -198,7 +198,7 @@ rules = {
       }
     };
 
-  }), assign_to_protocol:(function assign_to_protocol(context) {
+  }), assign_to_protocol: (function assign_to_protocol(context) {
     return {
       "AssignmentExpression:exit": function (node) {
         if ("property" in node.left) { // member assignment, so yeah.
@@ -213,7 +213,7 @@ rules = {
       }
     };
 
-  }), assign_to_hostname:(function assign_to_hostname(context) {
+  }), assign_to_hostname: (function assign_to_hostname(context) {
     return {
       "AssignmentExpression:exit": function (node) {
         if ("property" in node.left) { // member assignment, so yeah.
@@ -228,7 +228,7 @@ rules = {
       }
     };
 
-  }), assign_to_src:(function assign_to_src(context) {
+  }), assign_to_src: (function assign_to_src(context) {
     return {
       "AssignmentExpression:exit": function (node) {
         if ("property" in node.left) { // member assignment, so yeah.
@@ -243,7 +243,7 @@ rules = {
       }
     };
 
-  }), call_parseFromString:(function call_parseFromString(context) {
+  }), call_parseFromString: (function call_parseFromString(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'parseFromString') {
@@ -252,7 +252,7 @@ rules = {
       }
     };
 
-  }), call_addEventListener:(function call_addEventListener(context) {
+  }), call_addEventListener: (function call_addEventListener(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'addEventListener') {
@@ -261,11 +261,11 @@ rules = {
       }
     };
 
-  }), call_addEventListener_message:(function call_addEventListener_message(context) {
+  }), call_addEventListener_message: (function call_addEventListener_message(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'addEventListener') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'message')) {
               context.report(node, "The function addEventListener with parameter message can be unsafe");
@@ -274,7 +274,7 @@ rules = {
         }
       }
     }
-  }), assign_to_onmessage:(function assign_to_onmessage(context) {
+  }), assign_to_onmessage: (function assign_to_onmessage(context) {
 
     return {
       "AssignmentExpression:exit": function (node) {
@@ -284,67 +284,67 @@ rules = {
       }
     };
 
-  }), identifier_indexedDB:(function identifier_indexedDB(context) {
+  }), identifier_indexedDB: (function identifier_indexedDB(context) {
 
     return {
-      "Identifier": function(node) {
-        if (node.name == rule.source) {
-          context.report(node, "indexedDB can be unsafe.");
+      "Identifier": function (node) {
+        if (node.name == "indexedDB") {
+          context.report(node, "indexedDB can be unsafe");
         }
       }
     }
 
-  }), identifier_localStorage:(function identifier_localStorage(context) {
+  }), identifier_localStorage: (function identifier_localStorage(context) {
 
     return {
-      "Identifier": function(node) {
-        if (node.name == rule.source) {
-          context.report(node, "localStorage can be unsafe.");
+      "Identifier": function (node) {
+        if (node.name == "localStorage") {
+          context.report(node, "localStorage can be unsafe");
         }
       }
     }
 
-  }), identifier_sessionStorage:(function identifier_sessionStorage(context) {
+  }), identifier_sessionStorage: (function identifier_sessionStorage(context) {
 
     return {
-      "Identifier": function(node) {
-        if (node.name == rule.source) {
-          context.report(node, "sessionStorage can be unsafe.");
+      "Identifier": function (node) {
+        if (node.name == "sessionStorage") {
+          context.report(node, "sessionStorage can be unsafe");
         }
       }
     }
 
-  }), property_indexedDB:(function property_indexedDB(context) {
+  }), property_indexedDB: (function property_indexedDB(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'indexedDB') {
-          context.report(node, "indexedDB can be unsafe.");
+          context.report(node, "indexedDB can be unsafe");
 
         }
       }
     }
 
-  }), property_localStorage:(function property_localStorage(context) {
+  }), property_localStorage: (function property_localStorage(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'localStorage') {
-          context.report(node, "localStorage can be unsafe.");
+          context.report(node, "localStorage can be unsafe");
 
         }
       }
     }
 
-  }), property_sessionStorage:(function property_sessionStorage(context) {
+  }), property_sessionStorage: (function property_sessionStorage(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'sessionStorage') {
-          context.report(node, "sessionStorage can be unsafe.");
+          context.report(node, "sessionStorage can be unsafe");
 
         }
       }
     }
 
-  }), new_MozActivity:(function new_MozActivity(context) {
+  }), new_MozActivity: (function new_MozActivity(context) {
     return {
       "NewExpression": function (node) {
         if (node.callee.name == 'MozActivity') {
@@ -353,11 +353,11 @@ rules = {
       }
     };
 
-  }), call_mozSetMessageHandler_activity:(function call_mozSetMessageHandler_activity(context) {
+  }), call_mozSetMessageHandler_activity: (function call_mozSetMessageHandler_activity(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'mozSetMessageHandler') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'activity')) {
               context.report(node, "The function mozSetMessageHandler with parameter activity can be unsafe");
@@ -366,7 +366,7 @@ rules = {
         }
       }
     }
-  }), call_mozSetMessageHandler:(function call_mozSetMessageHandler(context) {
+  }), call_mozSetMessageHandler: (function call_mozSetMessageHandler(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'mozSetMessageHandler') {
@@ -375,17 +375,17 @@ rules = {
       }
     };
 
-  }), property_getDataStores:(function property_getDataStores(context) {
+  }), property_getDataStores: (function property_getDataStores(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'getDataStores') {
-          context.report(node, "getDataStores can be unsafe.");
+          context.report(node, "getDataStores can be unsafe");
 
         }
       }
     }
 
-  }), call_connect:(function call_connect(context) {
+  }), call_connect: (function call_connect(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'connect') {
@@ -394,11 +394,11 @@ rules = {
       }
     };
 
-  }), call_setMessageHandler_connect:(function call_setMessageHandler_connect(context) {
+  }), call_setMessageHandler_connect: (function call_setMessageHandler_connect(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'setMessageHandler') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'connect')) {
               context.report(node, "The function setMessageHandler with parameter connect can be unsafe");
@@ -407,21 +407,21 @@ rules = {
         }
       }
     }
-  }), property_mozAlarms:(function property_mozAlarms(context) {
+  }), property_mozAlarms: (function property_mozAlarms(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozAlarms') {
-          context.report(node, "mozAlarms can be unsafe.");
+          context.report(node, "mozAlarms can be unsafe");
 
         }
       }
     }
 
-  }), call_open_attention:(function call_open_attention(context) {
+  }), call_open_attention: (function call_open_attention(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'open') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'attention')) {
               context.report(node, "The function open with parameter attention can be unsafe");
@@ -430,17 +430,17 @@ rules = {
         }
       }
     }
-  }), property_getUserMedia:(function property_getUserMedia(context) {
+  }), property_getUserMedia: (function property_getUserMedia(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'getUserMedia') {
-          context.report(node, "getUserMedia can be unsafe.");
+          context.report(node, "getUserMedia can be unsafe");
 
         }
       }
     }
 
-  }), assign_to_mozAudioChannelType:(function assign_to_mozAudioChannelType(context) {
+  }), assign_to_mozAudioChannelType: (function assign_to_mozAudioChannelType(context) {
     return {
       "AssignmentExpression:exit": function (node) {
         if ("property" in node.left) { // member assignment, so yeah.
@@ -455,7 +455,7 @@ rules = {
       }
     };
 
-  }), assign_to_mozAudioChannel:(function assign_to_mozAudioChannel(context) {
+  }), assign_to_mozAudioChannel: (function assign_to_mozAudioChannel(context) {
     return {
       "AssignmentExpression:exit": function (node) {
         if ("property" in node.left) { // member assignment, so yeah.
@@ -470,11 +470,11 @@ rules = {
       }
     };
 
-  }), call_addEventListener_deviceproximity:(function call_addEventListener_deviceproximity(context) {
+  }), call_addEventListener_deviceproximity: (function call_addEventListener_deviceproximity(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'addEventListener') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'deviceproximity')) {
               context.report(node, "The function addEventListener with parameter deviceproximity can be unsafe");
@@ -483,21 +483,21 @@ rules = {
         }
       }
     }
-  }), property_mozBluetooth:(function property_mozBluetooth(context) {
+  }), property_mozBluetooth: (function property_mozBluetooth(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozBluetooth') {
-          context.report(node, "mozBluetooth can be unsafe.");
+          context.report(node, "mozBluetooth can be unsafe");
 
         }
       }
     }
 
-  }), call_setAttribute_mozbrowser:(function call_setAttribute_mozbrowser(context) {
+  }), call_setAttribute_mozbrowser: (function call_setAttribute_mozbrowser(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'setAttribute') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'mozbrowser')) {
               context.report(node, "The function setAttribute with parameter mozbrowser can be unsafe");
@@ -506,21 +506,21 @@ rules = {
         }
       }
     }
-  }), property_mozCameras:(function property_mozCameras(context) {
+  }), property_mozCameras: (function property_mozCameras(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozCameras') {
-          context.report(node, "mozCameras can be unsafe.");
+          context.report(node, "mozCameras can be unsafe");
 
         }
       }
     }
 
-  }), call_addEventListener_cellbroadcastmsgchanged:(function call_addEventListener_cellbroadcastmsgchanged(context) {
+  }), call_addEventListener_cellbroadcastmsgchanged: (function call_addEventListener_cellbroadcastmsgchanged(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'addEventListener') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'cellbroadcastmsgchanged')) {
               context.report(node, "The function addEventListener with parameter cellbroadcastmsgchanged can be unsafe");
@@ -529,17 +529,17 @@ rules = {
         }
       }
     }
-  }), property_mozContacts:(function property_mozContacts(context) {
+  }), property_mozContacts: (function property_mozContacts(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozContacts') {
-          context.report(node, "mozContacts can be unsafe.");
+          context.report(node, "mozContacts can be unsafe");
 
         }
       }
     }
 
-  }), new_Notification:(function new_Notification(context) {
+  }), new_Notification: (function new_Notification(context) {
     return {
       "NewExpression": function (node) {
         if (node.callee.name == 'Notification') {
@@ -548,21 +548,21 @@ rules = {
       }
     };
 
-  }), property_getDeviceStorage:(function property_getDeviceStorage(context) {
+  }), property_getDeviceStorage: (function property_getDeviceStorage(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'getDeviceStorage') {
-          context.report(node, "getDeviceStorage can be unsafe.");
+          context.report(node, "getDeviceStorage can be unsafe");
 
         }
       }
     }
 
-  }), call_getDeviceStorage_apps:(function call_getDeviceStorage_apps(context) {
+  }), call_getDeviceStorage_apps: (function call_getDeviceStorage_apps(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'getDeviceStorage') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'apps')) {
               context.report(node, "The function getDeviceStorage with parameter apps can be unsafe");
@@ -571,11 +571,11 @@ rules = {
         }
       }
     }
-  }), call_getDeviceStorage_crashes:(function call_getDeviceStorage_crashes(context) {
+  }), call_getDeviceStorage_crashes: (function call_getDeviceStorage_crashes(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'getDeviceStorage') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'crashes')) {
               context.report(node, "The function getDeviceStorage with parameter crashes can be unsafe");
@@ -584,11 +584,11 @@ rules = {
         }
       }
     }
-  }), call_getDeviceStorage_music:(function call_getDeviceStorage_music(context) {
+  }), call_getDeviceStorage_music: (function call_getDeviceStorage_music(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'getDeviceStorage') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'music')) {
               context.report(node, "The function getDeviceStorage with parameter music can be unsafe");
@@ -597,11 +597,11 @@ rules = {
         }
       }
     }
-  }), call_getDeviceStorage_pictures:(function call_getDeviceStorage_pictures(context) {
+  }), call_getDeviceStorage_pictures: (function call_getDeviceStorage_pictures(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'getDeviceStorage') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'pictures')) {
               context.report(node, "The function getDeviceStorage with parameter pictures can be unsafe");
@@ -610,11 +610,11 @@ rules = {
         }
       }
     }
-  }), call_getDeviceStorage_sdcard:(function call_getDeviceStorage_sdcard(context) {
+  }), call_getDeviceStorage_sdcard: (function call_getDeviceStorage_sdcard(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'getDeviceStorage') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'sdcard')) {
               context.report(node, "The function getDeviceStorage with parameter sdcard can be unsafe");
@@ -623,11 +623,11 @@ rules = {
         }
       }
     }
-  }), call_getDeviceStorage_videos:(function call_getDeviceStorage_videos(context) {
+  }), call_getDeviceStorage_videos: (function call_getDeviceStorage_videos(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'getDeviceStorage') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'videos')) {
               context.report(node, "The function getDeviceStorage with parameter videos can be unsafe");
@@ -636,21 +636,21 @@ rules = {
         }
       }
     }
-  }), property_mozDownloadManager:(function property_mozDownloadManager(context) {
+  }), property_mozDownloadManager: (function property_mozDownloadManager(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozDownloadManager') {
-          context.report(node, "mozDownloadManager can be unsafe.");
+          context.report(node, "mozDownloadManager can be unsafe");
 
         }
       }
     }
 
-  }), call_setAttribute_mozapp:(function call_setAttribute_mozapp(context) {
+  }), call_setAttribute_mozapp: (function call_setAttribute_mozapp(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'setAttribute') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'mozapp')) {
               context.report(node, "The function setAttribute with parameter mozapp can be unsafe");
@@ -659,47 +659,47 @@ rules = {
         }
       }
     }
-  }), property_mozFMRadio:(function property_mozFMRadio(context) {
+  }), property_mozFMRadio: (function property_mozFMRadio(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozFMRadio') {
-          context.report(node, "mozFMRadio can be unsafe.");
+          context.report(node, "mozFMRadio can be unsafe");
 
         }
       }
     }
 
-  }), property_geolocation:(function property_geolocation(context) {
+  }), property_geolocation: (function property_geolocation(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'geolocation') {
-          context.report(node, "geolocation can be unsafe.");
+          context.report(node, "geolocation can be unsafe");
 
         }
       }
     }
 
-  }), property_addIdleObserver:(function property_addIdleObserver(context) {
+  }), property_addIdleObserver: (function property_addIdleObserver(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'addIdleObserver') {
-          context.report(node, "addIdleObserver can be unsafe.");
+          context.report(node, "addIdleObserver can be unsafe");
 
         }
       }
     }
 
-  }), property_mozInputMethod:(function property_mozInputMethod(context) {
+  }), property_mozInputMethod: (function property_mozInputMethod(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozInputMethod') {
-          context.report(node, "mozInputMethod can be unsafe.");
+          context.report(node, "mozInputMethod can be unsafe");
 
         }
       }
     }
 
-  }), call_hide:(function call_hide(context) {
+  }), call_hide: (function call_hide(context) {
     return {
       "CallExpression": function (node) {
         if (node.callee.name == 'hide') {
@@ -708,41 +708,41 @@ rules = {
       }
     };
 
-  }), property_mozMobileConnections:(function property_mozMobileConnections(context) {
+  }), property_mozMobileConnections: (function property_mozMobileConnections(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozMobileConnections') {
-          context.report(node, "mozMobileConnections can be unsafe.");
+          context.report(node, "mozMobileConnections can be unsafe");
 
         }
       }
     }
 
-  }), property_lastKnownHomeNetwork:(function property_lastKnownHomeNetwork(context) {
+  }), property_lastKnownHomeNetwork: (function property_lastKnownHomeNetwork(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'lastKnownHomeNetwork') {
-          context.report(node, "lastKnownHomeNetwork can be unsafe.");
+          context.report(node, "lastKnownHomeNetwork can be unsafe");
 
         }
       }
     }
 
-  }), property_lastKnownNetwork:(function property_lastKnownNetwork(context) {
+  }), property_lastKnownNetwork: (function property_lastKnownNetwork(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'lastKnownNetwork') {
-          context.report(node, "lastKnownNetwork can be unsafe.");
+          context.report(node, "lastKnownNetwork can be unsafe");
 
         }
       }
     }
 
-  }), call_addEventListener_moznetworkupload:(function call_addEventListener_moznetworkupload(context) {
+  }), call_addEventListener_moznetworkupload: (function call_addEventListener_moznetworkupload(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'addEventListener') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'moznetworkupload')) {
               context.report(node, "The function addEventListener with parameter moznetworkupload can be unsafe");
@@ -751,11 +751,11 @@ rules = {
         }
       }
     }
-  }), call_addEventListener_moznetworkdownload:(function call_addEventListener_moznetworkdownload(context) {
+  }), call_addEventListener_moznetworkdownload: (function call_addEventListener_moznetworkdownload(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'addEventListener') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'moznetworkdownload')) {
               context.report(node, "The function addEventListener with parameter moznetworkdownload can be unsafe");
@@ -764,31 +764,31 @@ rules = {
         }
       }
     }
-  }), property_mozNetworkStats:(function property_mozNetworkStats(context) {
+  }), property_mozNetworkStats: (function property_mozNetworkStats(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozNetworkStats') {
-          context.report(node, "mozNetworkStats can be unsafe.");
+          context.report(node, "mozNetworkStats can be unsafe");
 
         }
       }
     }
 
-  }), property_mozNfc:(function property_mozNfc(context) {
+  }), property_mozNfc: (function property_mozNfc(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozNfc') {
-          context.report(node, "mozNfc can be unsafe.");
+          context.report(node, "mozNfc can be unsafe");
 
         }
       }
     }
 
-  }), 'call_open_remote=true':(function call_open_remote_true(context) {
+  }), 'call_open_remote=true': (function anonymous(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'open') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'remote=true')) {
               context.report(node, "The function open with parameter remote=true can be unsafe");
@@ -797,57 +797,57 @@ rules = {
         }
       }
     }
-  }), property_mozPermissionSettings:(function property_mozPermissionSettings(context) {
+  }), property_mozPermissionSettings: (function property_mozPermissionSettings(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozPermissionSettings') {
-          context.report(node, "mozPermissionSettings can be unsafe.");
+          context.report(node, "mozPermissionSettings can be unsafe");
 
         }
       }
     }
 
-  }), property_mozPhoneNumberService:(function property_mozPhoneNumberService(context) {
+  }), property_mozPhoneNumberService: (function property_mozPhoneNumberService(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozPhoneNumberService') {
-          context.report(node, "mozPhoneNumberService can be unsafe.");
+          context.report(node, "mozPhoneNumberService can be unsafe");
 
         }
       }
     }
 
-  }), property_mozPower:(function property_mozPower(context) {
+  }), property_mozPower: (function property_mozPower(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozPower') {
-          context.report(node, "mozPower can be unsafe.");
+          context.report(node, "mozPower can be unsafe");
 
         }
       }
     }
 
-  }), property_mozSettings:(function property_mozSettings(context) {
+  }), property_mozSettings: (function property_mozSettings(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozSettings') {
-          context.report(node, "mozSettings can be unsafe.");
+          context.report(node, "mozSettings can be unsafe");
 
         }
       }
     }
 
-  }), property_mozMobileMessage:(function property_mozMobileMessage(context) {
+  }), property_mozMobileMessage: (function property_mozMobileMessage(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozMobileMessage') {
-          context.report(node, "mozMobileMessage can be unsafe.");
+          context.report(node, "mozMobileMessage can be unsafe");
 
         }
       }
     }
 
-  }), new_MozSpeakerManager:(function new_MozSpeakerManager(context) {
+  }), new_MozSpeakerManager: (function new_MozSpeakerManager(context) {
     return {
       "NewExpression": function (node) {
         if (node.callee.name == 'MozSpeakerManager') {
@@ -856,10 +856,10 @@ rules = {
       }
     };
 
-  }), object_mozSystem:(function object_mozSystem(context) {
+  }), object_mozSystem: (function object_mozSystem(context) {
     return {
       "ObjectExpression": function (node) {
-        for (var i=0; i < node.properties.length; i++) {
+        for (var i = 0; i < node.properties.length; i++) {
           var prop = node.properties[i];
           if (prop.key.type == "Identifier") {
             if (prop.key.name == "mozSystem") {
@@ -874,51 +874,51 @@ rules = {
       }
     }
 
-  }), property_mozTCPSocket:(function property_mozTCPSocket(context) {
+  }), property_mozTCPSocket: (function property_mozTCPSocket(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozTCPSocket') {
-          context.report(node, "mozTCPSocket can be unsafe.");
+          context.report(node, "mozTCPSocket can be unsafe");
 
         }
       }
     }
 
-  }), property_mozTelephony:(function property_mozTelephony(context) {
+  }), property_mozTelephony: (function property_mozTelephony(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozTelephony') {
-          context.report(node, "mozTelephony can be unsafe.");
+          context.report(node, "mozTelephony can be unsafe");
 
         }
       }
     }
 
-  }), property_mozTime:(function property_mozTime(context) {
+  }), property_mozTime: (function property_mozTime(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozTime') {
-          context.report(node, "mozTime can be unsafe.");
+          context.report(node, "mozTime can be unsafe");
 
         }
       }
     }
 
-  }), property_mozVoicemail:(function property_mozVoicemail(context) {
+  }), property_mozVoicemail: (function property_mozVoicemail(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozVoicemail') {
-          context.report(node, "mozVoicemail can be unsafe.");
+          context.report(node, "mozVoicemail can be unsafe");
 
         }
       }
     }
 
-  }), call_mozSetMessageHandler_wappush_received:(function call_mozSetMessageHandler_wappush_received(context) {
+  }), call_mozSetMessageHandler_wappush_received: (function call_mozSetMessageHandler_wappush_received(context) {
     return {
-      "CallExpression": function() {
+      "CallExpression": function (node) {
         if (node.callee.name == 'mozSetMessageHandler') {
-          for (var i=0; i < node.arguments.length; i++) {
+          for (var i = 0; i < node.arguments.length; i++) {
             var arg = node.arguments[i];
             if ((arg.type == "Literal") && (arg.value == 'wappush-received')) {
               context.report(node, "The function mozSetMessageHandler with parameter wappush-received can be unsafe");
@@ -927,61 +927,61 @@ rules = {
         }
       }
     }
-  }), property_mgmt:(function property_mgmt(context) {
+  }), property_mgmt: (function property_mgmt(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mgmt') {
-          context.report(node, "mgmt can be unsafe.");
+          context.report(node, "mgmt can be unsafe");
 
         }
       }
     }
 
-  }), property_mozWifiManager:(function property_mozWifiManager(context) {
+  }), property_mozWifiManager: (function property_mozWifiManager(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozWifiManager') {
-          context.report(node, "mozWifiManager can be unsafe.");
+          context.report(node, "mozWifiManager can be unsafe");
 
         }
       }
     }
 
-  }), property_mozKeyboard:(function property_mozKeyboard(context) {
+  }), property_mozKeyboard: (function property_mozKeyboard(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozKeyboard') {
-          context.report(node, "mozKeyboard can be unsafe.");
+          context.report(node, "mozKeyboard can be unsafe");
 
         }
       }
     }
 
-  }), property_mozCellBroadcast:(function property_mozCellBroadcast(context) {
+  }), property_mozCellBroadcast: (function property_mozCellBroadcast(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozCellBroadcast') {
-          context.report(node, "mozCellBroadcast can be unsafe.");
+          context.report(node, "mozCellBroadcast can be unsafe");
 
         }
       }
     }
 
-  }), property_mozMobileConnection:(function property_mozMobileConnection(context) {
+  }), property_mozMobileConnection: (function property_mozMobileConnection(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozMobileConnection') {
-          context.report(node, "mozMobileConnection can be unsafe.");
+          context.report(node, "mozMobileConnection can be unsafe");
 
         }
       }
     }
 
-  }), property_mozNotification:(function property_mozNotification(context) {
+  }), property_mozNotification: (function property_mozNotification(context) {
     return {
-      "MemberExpression": function(node) {
+      "MemberExpression": function (node) {
         if (node.property.name == 'mozNotification') {
-          context.report(node, "mozNotification can be unsafe.");
+          context.report(node, "mozNotification can be unsafe");
 
         }
       }
@@ -992,13 +992,13 @@ rules = {
 var fs = require("fs");
 
 for (var ruleName in rules) {
-  var fileName = '../lib/rules/' +ruleName;
+  var fileName = '../lib/rules/' + ruleName;
   var a = rules[ruleName].toString().split("\n");
-  var fbody = (a.slice(1,a.length)).join("\n");
-  var rulestart = "/**\n * @fileoverview Rule "+ruleName+"\n * @author ScanJS contributors\n * @copyright 2015 Mozilla Corporation. All rights reserved.\n */\n\"use strict\";\n\nmodule.exports = function (context) {\n  \n  ";
+  var fbody = (a.slice(1, a.length)).join("\n");
+  var rulestart = "/**\n * @fileoverview Rule " + ruleName + "\n * @author ScanJS contributors\n * @copyright 2015 Mozilla Corporation. All rights reserved.\n */\n\"use strict\";\n\nmodule.exports = function (context) {\n  \n  ";
   //var ruleend = "\n};";
-  var rulesrc = rulestart+fbody;
-  fs.writeFileSync(fileName+'.js', rulesrc);
+  var rulesrc = rulestart + fbody;
+  fs.writeFileSync(fileName + '.js', rulesrc);
   //fs.appendFile("index.js", "'"+ruleName+"': 2,\n")
 
 }
