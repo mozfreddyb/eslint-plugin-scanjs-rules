@@ -19,12 +19,13 @@ var eslint = require("eslint"),
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_addEventListener_moznetworkdownload", {
     valid: [
-        { code: "window.addEventListener('moznetworkupload', uploadHandler);" }
-    ],    // Examples of code that should trigger the rule
+        { code: "" }
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "window.addEventListener('moznetworkdownload', downloadHandler);",
+            code: "window.addEventListener('moznetworkdownload', downloadHandler)",
             errors: [
                 { message: "The function addEventListener with parameter moznetworkdownload can be unsafe" }
             ]

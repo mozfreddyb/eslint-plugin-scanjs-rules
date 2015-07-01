@@ -1033,32 +1033,37 @@ for (var i=0; i < scanJsRules.length; i++) {
     +"//------------------------------------------------------------------------------\n"
     +"\n"
     +"var eslintTester = new ESLintTester(eslint.linter);\n"
-    +"eslintTester.addRuleTest(\"lib/rules/"+fname+"\", {\n";
+    +"eslintTester.addRuleTest(\"lib/rules/"+fname+"\", {\n"
+    +"    valid: [\n";
+  var warntestmiss=false;
   if (!rule.testmiss) {
-    template += "/*";
-  }
-    template += "    valid: [\n"
-    +"        { code: \""+rule.testmiss.replace("\n","")+"\" }\n"
-    +"    ],"
-  if (!rule.testmiss) {
-    template += "*/";
-  }
-  if (!rule.testhit) {
-    template += "/*";    
-  }
+    rule.testmiss = "foo()"
+    warntestmiss=true;
+  }  
+  for (var m of rule.testmiss.replace("\n","").split(";"))
+      if (m.trim() == "") { continue; }    
+    //console.log(rule.testmiss, '|', m);  
+    template+="        { code: \""+m+"\" }";
+  if (warntestmiss)
+    {
+      console.log("miss", m, eslintRule[0])
+      template+= " // XXX no need to test for code that does not trigger.";
+    }
+  template +="\n    ]\n,"
     template +="    // Examples of code that should trigger the rule\n"
     +"    invalid: [\n"
-    +"\n"
-    +"        {\n"
-    +"            code: \""+rule.testhit.replace("\n","")+"\",\n"
+    +"\n";
+    for (var c of rule.testhit.replace("\n","").split(";")) {
+      if (c.trim() == "") { continue; }
+    template+="        {\n"
+    +"            code: \""+c+"\",\n"
     +"            errors: [\n"
     +"                { message: \"can be unsafe\" }\n"
     +"            ]\n"
-    +"        },\n"
-    +"    ]\n";
-  if (!rule.testhit) {
-    template += "*/";    
-  }
+    +"        },\n";
+    }
+    template+="    ]\n";
+
     template+="});  // auto-generated from scanjs rules.json"
 
   //console.log("\n\n");
@@ -1066,10 +1071,5 @@ for (var i=0; i < scanJsRules.length; i++) {
   fw['../tests/rules/'+fname+'.js'] = template;
 }
 
+
 fw.toSource();
-
-
-
-/*
-
-*/

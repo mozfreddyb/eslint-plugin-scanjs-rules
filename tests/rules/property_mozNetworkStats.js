@@ -18,13 +18,14 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/property_mozNetworkStats", {
-/*    valid: [
-        { code: "" }
-    ],*/    // Examples of code that should trigger the rule
+    valid: [
+        { code: "foo()" } // XXX no need to test for code that does not trigger.
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "var networks = navigator.mozNetworkStats.getAvailableNetworks();",
+            code: "var networks = navigator.mozNetworkStats.getAvailableNetworks()",
             errors: [
                 { message: "mozNetworkStats can be unsafe" }
             ]

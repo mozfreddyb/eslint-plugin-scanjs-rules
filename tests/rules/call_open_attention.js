@@ -18,13 +18,14 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_open_attention", {
-/*    valid: [
-        { code: "" }
-    ],*/    // Examples of code that should trigger the rule
+    valid: [
+        { code: "foo()" } // XXX no need to test for code that does not trigger.
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "window.open('oncall.html', '', 'attention');",
+            code: "window.open('oncall.html', '', 'attention')",
             errors: [
                 { message: "The function open with parameter attention can be unsafe" }
             ]

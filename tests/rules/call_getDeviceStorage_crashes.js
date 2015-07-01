@@ -18,13 +18,14 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_getDeviceStorage_crashes", {
-/*    valid: [
-        { code: "" }
-    ],*/    // Examples of code that should trigger the rule
+    valid: [
+        { code: "foo()" } // XXX no need to test for code that does not trigger.
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "crashes = navigator.getDeviceStorage('crashes');",
+            code: "crashes = navigator.getDeviceStorage('crashes')",
             errors: [
                 { message: "The function getDeviceStorage with parameter crashes can be unsafe" }
             ]

@@ -19,12 +19,13 @@ var eslint = require("eslint"),
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_addEventListener_message", {
     valid: [
-        { code: "window.addEventListener('notmessage', receiveMessage, false); " }
-    ],    // Examples of code that should trigger the rule
+        { code: " " }
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "window.addEventListener('message', receiveMessage, false); ",
+            code: "window.addEventListener('message', receiveMessage, false)",
             errors: [
                 { message: "The function addEventListener with parameter message can be unsafe" }
             ]

@@ -18,13 +18,14 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/property_mozCameras", {
-/*    valid: [
-        { code: "" }
-    ],*/    // Examples of code that should trigger the rule
+    valid: [
+        { code: "foo()" } // XXX no need to test for code that does not trigger.
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "this.mozCameras[0].onShutter = this.onShutter;",
+            code: "this.mozCameras[0].onShutter = this.onShutter",
             errors: [
                 { message: "mozCameras can be unsafe" }
             ]

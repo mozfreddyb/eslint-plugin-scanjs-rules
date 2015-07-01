@@ -20,11 +20,12 @@ var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/identifier_localStorage", {
     valid: [
         { code: " 'localStorage'" }
-    ],    // Examples of code that should trigger the rule
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "localStorage.setItem('name', 'user1'); ",
+            code: "localStorage.setItem('name', 'user1')",
             errors: [
                 { message: "localStorage can be unsafe" }
             ]

@@ -18,13 +18,14 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/property_mozTelephony", {
-/*    valid: [
-        { code: "" }
-    ],*/    // Examples of code that should trigger the rule
+    valid: [
+        { code: "foo()" } // XXX no need to test for code that does not trigger.
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "navigator.mozTelephony.stopTone(this.serviceId);",
+            code: "navigator.mozTelephony.stopTone(this.serviceId)",
             errors: [
                 { message: "mozTelephony can be unsafe" }
             ]

@@ -253,7 +253,7 @@
     "testhit": "sessionStorage.setItem('name', 'user1'); ",
     "testmiss": " 'sessionStorage'",
     "desc": "Client-side data storage.",
-    "threat": ""
+    "threat": ""         p
   },
   {
     "name": "Indexeddb",

@@ -20,11 +20,12 @@ var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_parseFromString", {
     valid: [
         { code: "parseFromString()" }
-    ],    // Examples of code that should trigger the rule
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "window.doc = parser.parseFromString(someVar, 'text/html'); ",
+            code: "window.doc = parser.parseFromString(someVar, 'text/html')",
             errors: [
                 { message: "The function parseFromString can be unsafe" }
             ]

@@ -18,15 +18,16 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_mozSetMessageHandler_wappush_received", {
-/*    valid: [
-        { code: "" }
-    ],*/    // Examples of code that should trigger the rule
+    valid: [
+        { code: "foo()" } // XXX no need to test for code that does not trigger.
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "window.navigator.mozSetMessageHandler('wappush-received', wpm_onWapPushReceived);",
+            code: "window.navigator.mozSetMessageHandler('wappush-received', wpm_onWapPushReceived)",
             errors: [
-                { message: "The function mozSetMessageHandler with parameter wappush can be unsafe" }
+                { message: "The function mozSetMessageHandler with parameter wappush-received can be unsafe" }
             ]
         },
     ]

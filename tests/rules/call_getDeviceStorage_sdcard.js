@@ -18,13 +18,14 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_getDeviceStorage_sdcard", {
-/*    valid: [
-        { code: "" }
-    ],*/    // Examples of code that should trigger the rule
+    valid: [
+        { code: "foo()" } // XXX no need to test for code that does not trigger.
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "var storage = navigator.getDeviceStorage('sdcard');",
+            code: "var storage = navigator.getDeviceStorage('sdcard')",
             errors: [
                 { message: "The function getDeviceStorage with parameter sdcard can be unsafe" }
             ]

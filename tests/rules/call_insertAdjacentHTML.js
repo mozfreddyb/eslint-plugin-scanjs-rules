@@ -20,7 +20,8 @@ var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_insertAdjacentHTML", {
     valid: [
         { code: "insertAdjacentHTML" }
-    ],    // Examples of code that should trigger the rule
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {

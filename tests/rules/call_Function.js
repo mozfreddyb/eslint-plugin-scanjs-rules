@@ -20,11 +20,18 @@ var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_Function", {
     valid: [
         { code: "Function" }
-    ],    // Examples of code that should trigger the rule
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "Function('jsCode'+usercontrolledVal ) ; Function('arg','arg2','jsCode'+usercontrolledVal )",
+            code: "Function('jsCode'+usercontrolledVal ) ",
+            errors: [
+                { message: "The function Function can be unsafe" }
+            ]
+        },
+        {
+            code: " Function('arg','arg2','jsCode'+usercontrolledVal )",
             errors: [
                 { message: "The function Function can be unsafe" }
             ]

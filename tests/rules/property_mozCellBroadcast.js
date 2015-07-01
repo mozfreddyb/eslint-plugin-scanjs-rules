@@ -18,13 +18,14 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/property_mozCellBroadcast", {
-/*    valid: [
-        { code: "" }
-    ],*/    // Examples of code that should trigger the rule
+    valid: [
+        { code: "foo()" } // XXX no need to test for code that does not trigger.
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "navigator.mozCellBroadcast.onreceived = this.show.bind(this);",
+            code: "navigator.mozCellBroadcast.onreceived = this.show.bind(this)",
             errors: [
                 { message: "mozCellBroadcast can be unsafe" }
             ]

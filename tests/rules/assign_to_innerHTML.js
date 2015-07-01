@@ -19,12 +19,19 @@ var eslint = require("eslint"),
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/assign_to_innerHTML", {
     valid: [
-        { code: "a.innerHTML='foo';a.innerHTML='foo'+'bar'" }
-    ],    // Examples of code that should trigger the rule
+        { code: "a.innerHTML='foo'+'bar'" }
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "a.innerHTML=foo;a.innerHTML=foo+'bar'",
+            code: "a.innerHTML=foo",
+            errors: [
+                { message: "Assignment to innerHTML can be unsafe" }
+            ]
+        },
+        {
+            code: "a.innerHTML=foo+'bar'",
             errors: [
                 { message: "Assignment to innerHTML can be unsafe" }
             ]

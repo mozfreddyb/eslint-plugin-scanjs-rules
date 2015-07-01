@@ -879,8 +879,8 @@ function ruleTransform(rule) {
     var lit = rule.source.match(/\'(.*)\'/)[1];
     type = `call-${funcName}-${lit}`;    
     newRule = (new Function('context', `return {
-        "CallExpression": function(node) {
-            if (node.callee.name == '${funcName}') {
+        "CallExpression": function(node) {           
+            if ((node.callee.name == '${funcName}') || ((node.callee.property) && (node.callee.property.name == '${funcName}'))) {
             for (var i=0; i < node.arguments.length; i++) {
               var arg = node.arguments[i];
               if ((arg.type == "Literal") && (arg.value == '${lit}')) {
@@ -901,9 +901,7 @@ function ruleTransform(rule) {
             if ("property" in node.left) { // member assignment, so yeah.
               if (['+', '+='].indexOf(node.operator) !== -1) {
                 if (node.left.property.name === '${propName}') {
-                  if (!allowedExpression(node.right, node.parent)) {
-                    context.report(node, "Assignment to ${propName} can be unsafe");
-                  }
+                  context.report(node, "Assignment to ${propName} can be unsafe");
                 }
               }
             }
@@ -992,8 +990,7 @@ function ruleTransform(rule) {
      }
    `));
   } else {
-    type = `identifier-${rule.source}`;     l
-
+    type = `identifier-${rule.source}`;     
     newRule = (Function('context', `
       return {
         "Identifier": function(node) {
@@ -1025,10 +1022,3 @@ for (var rule in legacyRules) {
 }
 
 legacyRules.toSource().replace(/, ([a-zA-Z0-9_]+):\(function (anonymous)\(context\) {/g, ", $1:\(function $1\(context\) {")
-
-/*
-
-*/
-/*
-
-*/

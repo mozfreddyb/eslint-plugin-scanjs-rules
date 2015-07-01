@@ -18,13 +18,14 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/new_MozSpeakerManager", {
-/*    valid: [
-        { code: "" }
-    ],*/    // Examples of code that should trigger the rule
+    valid: [
+        { code: "foo()" } // XXX no need to test for code that does not trigger.
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "var mgr = new MozSpeakerManager();",
+            code: "var mgr = new MozSpeakerManager()",
             errors: [
                 { message: "The MozSpeakerManager constructor can be unsafe" }
             ]

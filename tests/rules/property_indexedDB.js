@@ -20,11 +20,12 @@ var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/property_indexedDB", {
     valid: [
         { code: " 'indexeddb'" }
-    ],    // Examples of code that should trigger the rule
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "window.indexedDB.open('MyTestDatabase');",
+            code: "window.indexedDB.open('MyTestDatabase')",
             errors: [
                 { message: "indexedDB can be unsafe" }
             ]

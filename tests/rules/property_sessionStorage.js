@@ -20,11 +20,12 @@ var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/property_sessionStorage", {
     valid: [
         { code: " 'sessionStorage'" }
-    ],    // Examples of code that should trigger the rule
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "window.sessionStorage.setItem('name', 'user1'); ",
+            code: "window.sessionStorage.setItem('name', 'user1')",
             errors: [
                 { message: "sessionStorage can be unsafe" }
             ]

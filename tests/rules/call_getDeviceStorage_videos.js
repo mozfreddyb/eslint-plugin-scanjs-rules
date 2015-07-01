@@ -18,13 +18,14 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_getDeviceStorage_videos", {
-/*    valid: [
-        { code: "" }
-    ],*/    // Examples of code that should trigger the rule
+    valid: [
+        { code: "foo()" } // XXX no need to test for code that does not trigger.
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "this.video = navigator.getDeviceStorage('videos');",
+            code: "this.video = navigator.getDeviceStorage('videos')",
             errors: [
                 { message: "The function getDeviceStorage with parameter videos can be unsafe" }
             ]

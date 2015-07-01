@@ -18,13 +18,14 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_setAttribute_mozapp", {
-/*    valid: [
-        { code: "" }
-    ],*/    // Examples of code that should trigger the rule
+    valid: [
+        { code: "foo()" } // XXX no need to test for code that does not trigger.
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "browser.setAttribute('mozapp', config.manifestURL);",
+            code: "browser.setAttribute('mozapp', config.manifestURL)",
             errors: [
                 { message: "The function setAttribute with parameter mozapp can be unsafe" }
             ]

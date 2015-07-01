@@ -18,13 +18,14 @@ var eslint = require("eslint"),
 
 var eslintTester = new ESLintTester(eslint.linter);
 eslintTester.addRuleTest("lib/rules/call_getDeviceStorage_music", {
-/*    valid: [
-        { code: "" }
-    ],*/    // Examples of code that should trigger the rule
+    valid: [
+        { code: "foo()" } // XXX no need to test for code that does not trigger.
+    ]
+,    // Examples of code that should trigger the rule
     invalid: [
 
         {
-            code: "storage = navigator.getDeviceStorage('music');",
+            code: "storage = navigator.getDeviceStorage('music')",
             errors: [
                 { message: "The function getDeviceStorage with parameter music can be unsafe" }
             ]
