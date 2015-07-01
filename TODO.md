@@ -4,5 +4,4 @@ TODO
 * * add location= rule
 * * add assignment-instead-of-equal-in-if rule
 * * get assign-inner-thml rule from no-unsafe-innerhtml plugin
-* tests for each rule!
-       sa
+* tests for each rule!       
