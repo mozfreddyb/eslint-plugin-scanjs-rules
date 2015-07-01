@@ -9,7 +9,7 @@
         "url": "https://github.com/mozfreddyb/eslint-plugin-scanjs-rules/issues"
     },
     "dependencies": {
-        "eslint": "^0.21.0",
+        "eslint": "^0.21.0"
     },
     "devDependencies": {
         "eslint": "^0.21.0",
