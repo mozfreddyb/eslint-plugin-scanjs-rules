@@ -2,7 +2,6 @@ TODO
 ====
 * after porting from scanjs to eslint:
 * * add location= rule
-* * add assignment-instead-of-equal-in-if rule
 * * get assign-inner-thml rule from no-unsafe-innerhtml plugin
 * tests for each rule!
 * look at existing eslint rules. they can also identify things like window['setTimeout'](), which is pretty neat.       
