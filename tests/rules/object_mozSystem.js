@@ -9,15 +9,16 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var eslint = require("eslint"),
-  ESLintTester = require("eslint-tester");
+var rule = require("../../lib/rules/object_mozSystem");
+var RuleTester = require('eslint').RuleTester;
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var eslintTester = new ESLintTester(eslint.linter);
-eslintTester.addRuleTest("lib/rules/object_mozSystem", {
+var eslintTester = new RuleTester();
+
+eslintTester.run("object_mozSystem", rule, {
   valid: [
     { code: "foo()" } // XXX no need to test for code that does not trigger.
   ],    // Examples of code that should trigger the rule

@@ -9,15 +9,16 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var eslint = require("eslint"),
-  ESLintTester = require("eslint-tester");
+var rule = require("../../lib/rules/assign_to_protocol");
+var RuleTester = require('eslint').RuleTester;
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var eslintTester = new ESLintTester(eslint.linter);
-eslintTester.addRuleTest("lib/rules/assign_to_protocol", {
+var eslintTester = new RuleTester();
+
+eslintTester.run("assign_to_protocol", rule, {
   valid: [
     { code: "foo.protocol==bar" }
   ],    // Examples of code that should trigger the rule

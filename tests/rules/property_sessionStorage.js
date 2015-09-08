@@ -9,15 +9,16 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var eslint = require("eslint"),
-  ESLintTester = require("eslint-tester");
+var rule = require("../../lib/rules/property_sessionStorage");
+var RuleTester = require('eslint').RuleTester;
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var eslintTester = new ESLintTester(eslint.linter);
-eslintTester.addRuleTest("lib/rules/property_sessionStorage", {
+var eslintTester = new RuleTester();
+
+eslintTester.run("property_sessionStorage", rule, {
   valid: [
     { code: " 'sessionStorage'" }
   ],    // Examples of code that should trigger the rule

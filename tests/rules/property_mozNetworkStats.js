@@ -9,15 +9,16 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var eslint = require("eslint"),
-  ESLintTester = require("eslint-tester");
+var rule = require("../../lib/rules/property_mozNetworkStats");
+var RuleTester = require('eslint').RuleTester;
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var eslintTester = new ESLintTester(eslint.linter);
-eslintTester.addRuleTest("lib/rules/property_mozNetworkStats", {
+var eslintTester = new RuleTester();
+
+eslintTester.run("property_mozNetworkStats", rule, {
   valid: [
     { code: "foo()" } // XXX no need to test for code that does not trigger.
   ],    // Examples of code that should trigger the rule

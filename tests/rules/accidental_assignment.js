@@ -9,15 +9,16 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var eslint = require("eslint"),
-  ESLintTester = require("eslint-tester");
+var rule = require("../../lib/rules/accidental_assignment");
+var RuleTester = require('eslint').RuleTester;
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var eslintTester = new ESLintTester(eslint.linter);
-eslintTester.addRuleTest("lib/rules/accidental_assignment", {
+var eslintTester = new RuleTester();
+
+eslintTester.run("accidental_assignment", rule, {
   valid: [
     { code: "if (foo == bar) { console.log('equals') }"  },
     { code: "while (meh==1) { mayChangeMeh(); }" },

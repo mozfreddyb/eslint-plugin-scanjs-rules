@@ -9,15 +9,16 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var eslint = require("eslint"),
-  ESLintTester = require("eslint-tester");
+var rule = require("../../lib/rules/call_addEventListener_moznetworkdownload");
+var RuleTester = require('eslint').RuleTester;
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var eslintTester = new ESLintTester(eslint.linter);
-eslintTester.addRuleTest("lib/rules/call_addEventListener_moznetworkdownload", {
+var eslintTester = new RuleTester();
+
+eslintTester.run("call_addEventListener_moznetworkdownload", rule, {
   valid: [
     { code: "foo" }
   ],    // Examples of code that should trigger the rule
