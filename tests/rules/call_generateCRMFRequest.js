@@ -9,15 +9,16 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var eslint = require("eslint"),
-  ESLintTester = require("eslint-tester");
+var rule = require("../../lib/rules/call_generateCRMFRequest");
+var RuleTester = require('eslint').RuleTester;
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var eslintTester = new ESLintTester(eslint.linter);
-eslintTester.addRuleTest("lib/rules/call_generateCRMFRequest", {
+var eslintTester = new RuleTester();
+
+eslintTester.run("call_generateCRMFRequest", rule, {
   valid: [
     { code: "crypto.generateCRMFRequest" }
   ],    // Examples of code that should trigger the rule

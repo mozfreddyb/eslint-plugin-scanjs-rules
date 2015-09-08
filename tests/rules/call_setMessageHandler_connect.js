@@ -9,15 +9,16 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var eslint = require("eslint"),
-  ESLintTester = require("eslint-tester");
+var rule = require("../../lib/rules/call_setMessageHandler_connect");
+var RuleTester = require('eslint').RuleTester;
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var eslintTester = new ESLintTester(eslint.linter);
-eslintTester.addRuleTest("lib/rules/call_setMessageHandler_connect", {
+var eslintTester = new RuleTester();
+
+eslintTester.run("call_setMessageHandler_connect", rule, {
   valid: [
     { code: "foo()" } // XXX no need to test for code that does not trigger.
   ],    // Examples of code that should trigger the rule

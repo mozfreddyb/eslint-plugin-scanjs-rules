@@ -9,15 +9,16 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var eslint = require("eslint"),
-  ESLintTester = require("eslint-tester");
+var rule = require("../../lib/rules/new_MozActivity");
+var RuleTester = require('eslint').RuleTester;
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var eslintTester = new ESLintTester(eslint.linter);
-eslintTester.addRuleTest("lib/rules/new_MozActivity", {
+var eslintTester = new RuleTester();
+
+eslintTester.run("new_MozActivity", rule, {
   valid: [
     { code: "MozActivity +1" }
   ],    // Examples of code that should trigger the rule

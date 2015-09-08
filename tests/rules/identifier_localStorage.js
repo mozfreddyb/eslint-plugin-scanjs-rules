@@ -9,15 +9,16 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var eslint = require("eslint"),
-  ESLintTester = require("eslint-tester");
+var rule = require("../../lib/rules/identifier_localStorage");
+var RuleTester = require('eslint').RuleTester;
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var eslintTester = new ESLintTester(eslint.linter);
-eslintTester.addRuleTest("lib/rules/identifier_localStorage", {
+var eslintTester = new RuleTester();
+
+eslintTester.run("identifier_localStorage", rule, {
   valid: [
     { code: " 'localStorage'" }
   ],    // Examples of code that should trigger the rule

@@ -9,15 +9,16 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var eslint = require("eslint"),
-  ESLintTester = require("eslint-tester");
+var rule = require("../../lib/rules/call_parseFromString");
+var RuleTester = require('eslint').RuleTester;
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var eslintTester = new ESLintTester(eslint.linter);
-eslintTester.addRuleTest("lib/rules/call_parseFromString", {
+var eslintTester = new RuleTester();
+
+eslintTester.run("call_parseFromString", rule, {
   valid: [
     { code: "parseFromString" }
   ],    // Examples of code that should trigger the rule

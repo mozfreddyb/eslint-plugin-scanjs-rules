@@ -9,15 +9,16 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var eslint = require("eslint"),
-  ESLintTester = require("eslint-tester");
+var rule = require("../../lib/rules/identifier_indexedDB");
+var RuleTester = require('eslint').RuleTester;
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var eslintTester = new ESLintTester(eslint.linter);
-eslintTester.addRuleTest("lib/rules/identifier_indexedDB", {
+var eslintTester = new RuleTester();
+
+eslintTester.run("identifier_indexedDB", rule, {
   valid: [
     { code: " 'indexeddb'" }
   ],    // Examples of code that should trigger the rule
