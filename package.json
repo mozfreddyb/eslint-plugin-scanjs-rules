@@ -9,11 +9,9 @@
         "url": "https://github.com/mozfreddyb/eslint-plugin-scanjs-rules/issues"
     },
     "dependencies": {
-        "eslint": ">=0.24.0"
+        "eslint": ">=1.1"
     },
     "devDependencies": {
-        "eslint": ">=0.24.0",
-        "eslint-tester": ">=0.8.2",
         "mocha": "^2.2.4"
     },
     "homepage": "https://github.com/mozfreddyb/eslint-plugin-scanjs-rules/",
