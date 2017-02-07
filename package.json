@@ -13,7 +13,7 @@
         "babel-eslint": ">=4.1.1"
     },
     "devDependencies": {
-        "mocha": "^2.2.4"
+        "mocha": "^3.2.0"
     },
     "homepage": "https://github.com/mozfreddyb/eslint-plugin-scanjs-rules/",
     "keywords": [
