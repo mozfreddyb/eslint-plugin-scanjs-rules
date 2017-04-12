@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "eslint": ">=1.1",
-        "babel-eslint": ">=4.1.1"
+        "babel-eslint": ">=7.2.2"
     },
     "devDependencies": {
         "mocha": "^3.2.0"
