@@ -1,79 +1,30 @@
 "use strict";
-module.exports = {
-  rules: {
-    'accidental_assignment': require('./lib/rules/accidental_assignment.js'),
-    'assign_to_hostname': require('./lib/rules/assign_to_hostname.js'),
-    'assign_to_href': require('./lib/rules/assign_to_href.js'),
-    'assign_to_location': require('./lib/rules/assign_to_location.js'),
-    'assign_to_onmessage': require('./lib/rules/assign_to_onmessage.js'),
-    'assign_to_pathname': require('./lib/rules/assign_to_pathname.js'),
-    'assign_to_protocol': require('./lib/rules/assign_to_protocol.js'),
-    'assign_to_search': require('./lib/rules/assign_to_search.js'),
-    'assign_to_src': require('./lib/rules/assign_to_src.js'),
-    'call_Function': require('./lib/rules/call_Function.js'),
-    'call_addEventListener': require('./lib/rules/call_addEventListener.js'),
-    'call_addEventListener_deviceproximity': require('./lib/rules/call_addEventListener_deviceproximity.js'),
-    'call_addEventListener_message': require('./lib/rules/call_addEventListener_message.js'),
-    'call_connect': require('./lib/rules/call_connect.js'),
-    'call_eval': require('./lib/rules/call_eval.js'),
-    'call_execScript': require('./lib/rules/call_execScript.js'),
-    'call_hide': require('./lib/rules/call_hide.js'),
-    'call_open_remote=true': require('./lib/rules/call_open_remote=true.js'),
-    'call_parseFromString': require('./lib/rules/call_parseFromString.js'),
-    'call_setAttribute_mozbrowser': require('./lib/rules/call_setAttribute_mozbrowser.js'),
-    'call_setImmediate': require('./lib/rules/call_setImmediate.js'),
-    'call_setInterval': require('./lib/rules/call_setInterval.js'),
-    'call_setTimeout': require('./lib/rules/call_setTimeout.js'),
-    'identifier_indexedDB': require('./lib/rules/identifier_indexedDB.js'),
-    'identifier_localStorage': require('./lib/rules/identifier_localStorage.js'),
-    'identifier_sessionStorage': require('./lib/rules/identifier_sessionStorage.js'),
-    'new_Function': require('./lib/rules/new_Function.js'),
-    'property_addIdleObserver': require('./lib/rules/property_addIdleObserver.js'),
-    'property_createContextualFragment': require('./lib/rules/property_createContextualFragment.js'),
-    'property_crypto': require('./lib/rules/property_crypto.js'),
-    'property_geolocation': require('./lib/rules/property_geolocation.js'),
-    'property_getUserMedia': require('./lib/rules/property_getUserMedia.js'),
-    'property_indexedDB': require('./lib/rules/property_indexedDB.js'),
-    'property_localStorage': require('./lib/rules/property_localStorage.js'),
-    'property_mgmt': require('./lib/rules/property_mgmt.js'),
-    'property_sessionStorage': require('./lib/rules/property_sessionStorage.js')
-  },
-  rulesConfig: {
-    'accidental_assignment': 2,
-    'assign_to_hostname': 2,
-    'assign_to_href': 2,
-    'assign_to_location': 2,
-    'assign_to_onmessage': 2,
-    'assign_to_pathname': 2,
-    'assign_to_protocol': 2,
-    'assign_to_search': 2,
-    'assign_to_src': 2,
-    'call_Function': 2,
-    'call_addEventListener': 2,
-    'call_addEventListener_deviceproximity': 2,
-    'call_addEventListener_message': 2,
-    'call_connect': 2,
-    'call_eval': 2,
-    'call_execScript': 2,
-    'call_hide': 2,
-    'call_open_remote=true': 2,
-    'call_parseFromString': 2,
-    'call_setAttribute_mozbrowser': 2,
-    'call_setImmediate': 2,
-    'call_setInterval': 2,
-    'call_setTimeout': 2,
-    'identifier_indexedDB': 2,
-    'identifier_localStorage': 2,
-    'identifier_sessionStorage': 2,
-    'new_Function': 2,
-    'property_addIdleObserver': 2,
-    'property_createContextualFragment': 2,
-    'property_crypto': 2,
-    'property_geolocation': 2,
-    'property_getUserMedia': 2,
-    'property_indexedDB': 2,
-    'property_localStorage': 2,
-    'property_mgmt': 2,
-    'property_sessionStorage': 2
+
+var fs = require('fs');
+var path = require('path');
+
+var rulesFiles = fs.readdirSync('./lib/rules/');
+
+// Generate an object of the form `{ ruleName: require('path/to/ruleFile.js'), ... }`
+// for use as the `rules` object of the exported object
+var rules = rulesFiles.reduce(function (aggregator, ruleFileName) {
+  if (path.extname(ruleFileName) === '.js') {
+    var ruleName = path.basename(ruleFileName, '.js');
+    aggregator[ruleName] = require('./lib/rules/' + ruleFileName);
   }
-}
+
+  return aggregator;
+}, {});
+
+// Using the same rule names from the `rules` object, generate an object
+// of the form { ruleName: 2, ... } to be used as the `rulesConfig` object
+// of the exported object
+var rulesConfig = Object.keys(rules).reduce(function (aggregator, ruleName) {
+  aggregator[ruleName] = 2;
+  return aggregator;
+}, {});
+
+module.exports = {
+  rules: rules,
+  rulesConfig: rulesConfig
+};
