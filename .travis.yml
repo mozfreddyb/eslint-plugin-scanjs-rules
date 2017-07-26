@@ -6,3 +6,5 @@ branches:
   only:
     - master
     - /^greenkeeper-.*$/
+before-script:
+    - npm run lint
