@@ -3,14 +3,15 @@
 var fs = require('fs');
 var path = require('path');
 
-var rulesFiles = fs.readdirSync('./lib/rules/');
+var rulesDir = path.join(__dirname, './lib/rules/');
+var rulesFiles = fs.readdirSync(rulesDir);
 
 // Generate an object of the form `{ ruleName: require('path/to/ruleFile.js'), ... }`
 // for use as the `rules` object of the exported object
 var rules = rulesFiles.reduce(function (aggregator, ruleFileName) {
   if (path.extname(ruleFileName) === '.js') {
     var ruleName = path.basename(ruleFileName, '.js');
-    aggregator[ruleName] = require('./lib/rules/' + ruleFileName);
+    aggregator[ruleName] = require(path.join(rulesDir, ruleFileName));
   }
 
   return aggregator;

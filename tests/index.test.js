@@ -3,9 +3,11 @@ var assert = require('assert');
 var fs = require('fs');
 var path = require('path');
 
-var rulesFiles = fs.readdirSync('./lib/rules/');
+var projectRoot = path.join(__dirname, '..');
 
-var myEslintConfig = require('../index');
+var rulesFiles = fs.readdirSync(path.join(projectRoot, './lib/rules/'));
+
+var myEslintConfig = require(path.join(projectRoot, './index'));
 
 describe('eslint-plugin-scanjs-rules', function () {
   it('should have a rule for each file in ./lib/rules', function () {
